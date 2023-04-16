@@ -1,0 +1,17 @@
+
+environment = "development"
+
+[http_server]
+address = "0.0.0.0:8080"
+
+[mysql]
+db_name = "quick"
+user = "root"
+password = "password"
+port = 3306
+host = "mysql"
+
+[redis]
+host = "redis:6379"
+password = ""
+db_name = 0
