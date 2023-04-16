@@ -25,19 +25,19 @@ func InitWalletHandlers(walletService WalletService) {
 	walletSvc = walletService
 }
 
-// @Summary		Get Balance API
-// @Description	Get Wallet Balance
-// @Tags			wallet
-// @Accept			json
-// @Produce		json
+//	@Summary		Get Balance API
+//	@Description	Get Wallet Balance
+//	@Tags			wallet
+//	@Accept			json
+//	@Produce		json
 //
-// @Param			wallet_id	path		string	true	"wallet id to get the balance"
+//	@Param			wallet_id	path		string	true	"wallet id to get the balance"
 //
-// @Success		200			{object}	string
-// @Failure		400			{string}	httputil.HTTPError
-// @Router			/api/v1/wallets/{wallet_id}/balance [get]
+//	@Success		200			{object}	string
+//	@Failure		400			{string}	httputil.HTTPError
+//	@Router			/api/v1/wallets/{wallet_id}/balance [get]
 //
-// @Security		ApiKeyAuth
+//	@Security		ApiKeyAuth
 func GetBalance(c *gin.Context) {
 	walletID, err := strconv.ParseUint(c.Param("wallet_id"), 10, 64)
 	if err != nil {
@@ -65,20 +65,20 @@ type creditReqbody struct {
 	Amount string `json:"amount"`
 }
 
-// @Summary		Credit Wallet API
-// @Description	Creadit a Wallet Balance
-// @Tags			wallet
-// @Accept			json
-// @Produce		json
+//	@Summary		Credit Wallet API
+//	@Description	Creadit a Wallet Balance
+//	@Tags			wallet
+//	@Accept			json
+//	@Produce		json
 //
-// @Param			wallet_id	path		string			true	"wallet id to credit the balance"
+//	@Param			wallet_id	path		string			true	"wallet id to credit the balance"
 //
-// @Param			_			body		creditReqbody	false	"amount to credit the wallet"
+//	@Param			_			body		creditReqbody	false	"amount to credit the wallet"
 //
-// @Success		200			{object}	string
-// @Failure		400			{string}	httputil.HTTPError
-// @Router			/api/v1/wallets/{wallet_id}/credit [post]
-// @Security		ApiKeyAuth
+//	@Success		200			{object}	string
+//	@Failure		400			{string}	httputil.HTTPError
+//	@Router			/api/v1/wallets/{wallet_id}/credit [post]
+//	@Security		ApiKeyAuth
 func CreditWallet(c *gin.Context) {
 	walletID, err := strconv.ParseUint(c.Param("wallet_id"), 10, 64)
 	if err != nil {
@@ -121,20 +121,20 @@ type debitReqbody struct {
 	Amount string `json:"amount"`
 }
 
-// @Summary		Debit Wallet API
-// @Description	Debit a Wallet Balance
-// @Tags			wallet
-// @Accept			json
-// @Produce		json
+//	@Summary		Debit Wallet API
+//	@Description	Debit a Wallet Balance
+//	@Tags			wallet
+//	@Accept			json
+//	@Produce		json
 //
-// @Param			wallet_id	path		string			true	"wallet id to debit the balance"
+//	@Param			wallet_id	path		string			true	"wallet id to debit the balance"
 //
-// @Param			_			body		debitReqbody	false	"amount to debit from the wallet"
+//	@Param			_			body		debitReqbody	false	"amount to debit from the wallet"
 //
-// @Success		200			{object}	string
-// @Failure		400			{string}	httputil.HTTPError
-// @Router			/api/v1/wallets/{wallet_id}/debit [post]
-// @Security		ApiKeyAuth
+//	@Success		200			{object}	string
+//	@Failure		400			{string}	httputil.HTTPError
+//	@Router			/api/v1/wallets/{wallet_id}/debit [post]
+//	@Security		ApiKeyAuth
 func DebitWallet(c *gin.Context) {
 	walletID, err := strconv.ParseUint(c.Param("wallet_id"), 10, 64)
 	if err != nil {

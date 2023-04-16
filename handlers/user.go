@@ -27,15 +27,15 @@ type loginReqBody struct {
 //	@Summary		Login API
 //	@Description	Login authenticates the user and returns a token
 
-// @Tags		auth
-// @Accept		json
-// @Produce	json
+//	@Tags		auth
+//	@Accept		json
+//	@Produce	json
 //
-// @Param		_	body		loginReqBody	false	"username and password"
+//	@Param		_	body		loginReqBody	false	"username and password"
 //
-// @Success	200	{object}	string
-// @Failure	400	{string}	httputil.HTTPError
-// @Router		/v1/auth/login [post]
+//	@Success	200	{object}	string
+//	@Failure	400	{string}	httputil.HTTPError
+//	@Router		/v1/auth/login [post]
 func Login(c *gin.Context) {
 	var req loginReqBody
 

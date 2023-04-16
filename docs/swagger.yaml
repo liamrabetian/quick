@@ -1,0 +1,141 @@
+definitions:
+  handlers.creditReqbody:
+    properties:
+      amount:
+        type: string
+    type: object
+  handlers.debitReqbody:
+    properties:
+      amount:
+        type: string
+    type: object
+  handlers.loginReqBody:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/v1/wallets/{wallet_id}/balance:
+    get:
+      consumes:
+      - application/json
+      description: Get Wallet Balance
+      parameters:
+      - description: wallet id to get the balance
+        in: path
+        name: wallet_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Get Balance API
+      tags:
+      - wallet
+  /api/v1/wallets/{wallet_id}/credit:
+    post:
+      consumes:
+      - application/json
+      description: Creadit a Wallet Balance
+      parameters:
+      - description: wallet id to credit the balance
+        in: path
+        name: wallet_id
+        required: true
+        type: string
+      - description: amount to credit the wallet
+        in: body
+        name: _
+        schema:
+          $ref: '#/definitions/handlers.creditReqbody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Credit Wallet API
+      tags:
+      - wallet
+  /api/v1/wallets/{wallet_id}/debit:
+    post:
+      consumes:
+      - application/json
+      description: Debit a Wallet Balance
+      parameters:
+      - description: wallet id to debit the balance
+        in: path
+        name: wallet_id
+        required: true
+        type: string
+      - description: amount to debit from the wallet
+        in: body
+        name: _
+        schema:
+          $ref: '#/definitions/handlers.debitReqbody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Debit Wallet API
+      tags:
+      - wallet
+  /v1/auth/login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: username and password
+        in: body
+        name: _
+        schema:
+          $ref: '#/definitions/handlers.loginReqBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      tags:
+      - auth
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

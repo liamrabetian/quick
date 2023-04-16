@@ -47,9 +47,6 @@ func (s *Server) setupRouter() {
 		logrus.Fatalf("failed to set trusted proxies")
 	}
 
-	// server controllers
-	router.GET("/ping", s.Ping)
-
 	// set swagger info
 	docs.SwaggerInfo.Title = "Quick Swagger API"
 	docs.SwaggerInfo.Description = "Interact with the APIs here"

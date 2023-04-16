@@ -1,7 +1,7 @@
-// @securitydefinitions.apikey	ApiKeyAuth
+//	@securitydefinitions.apikey	ApiKeyAuth
 //
-// @in							header
-// @name						Authorization
+//	@in							header
+//	@name						Authorization
 package main
 
 import (
