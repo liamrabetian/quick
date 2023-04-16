@@ -1,0 +1,44 @@
+name: Test QUICK
+
+on: [push, pull_request]
+
+jobs:
+  runs-on: ubuntu-latest
+  lint:
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+          cache: true
+
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: v1.29
+
+  test:
+    needs: [lint]
+    env:
+      QUICK_CONFIGFILE: config-test.toml
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+          cache: true
+
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Format the code
+        run: go fmt $(go list ./... | grep -v /vendor/)
+
+      - name: Examines the code and reports suspicious constructs
+        run: go vet $(go list ./... | grep -v /vendor/)
+
+      - name: Test the code
+        run: go test -race $(go list ./... | grep -v /vendor/)

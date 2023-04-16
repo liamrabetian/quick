@@ -1,0 +1,33 @@
+default:
+  image: golang:1.20
+
+  tags:
+    - docker # only use docker runners
+
+.go-cache:
+  variables:
+    GOPATH: $CI_PROJECT_DIR/.go
+  cache:
+    paths:
+      - .go/pkg/mod/
+
+stages:
+  - lint
+  - test
+
+lint:
+  image: golangci/golangci-lint:v1.50
+  stage: lint
+  extends: .go-cache
+  allow_failure: false
+  script:
+    - golangci-lint run -v
+
+test:
+  stage: test
+  variables:
+    QUICK_CONFIGFILE: config-test.toml
+  script:
+    - go fmt $(go list ./... | grep -v /vendor/)
+    - go vet $(go list ./... | grep -v /vendor/)
+    - go test -race $(go list ./... | grep -v /vendor/)
