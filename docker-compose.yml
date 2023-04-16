@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    hostname: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: quick
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  redis:
+    image: redis:6.2
+    container_name: redis
+    hostname: redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+volumes:
+  db_data:
